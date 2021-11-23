@@ -1,4 +1,4 @@
-//dados primitivos: string, number, undefined, null, boolean, symbol
+//dados primitivos: string, boolean, number, bigint, undefined, null, symbol
 const nome1 = 'Luiz'; // string
 const nome2 = "Luiz"; // string
 const nome3 = `Luiz`; // string
