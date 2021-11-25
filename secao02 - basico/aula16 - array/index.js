@@ -5,6 +5,7 @@ alunos[3] = "Luiza"; //adiciona manualmente no final
 alunos[alunos.length] = "Rafael"; //adiciona manualmente no final
 alunos.push("Pedro"); //adiciona no final
 alunos.unshift("Luiza"); //adiciona no começo
+alunos.shift(); //extrai do começo do array
 
 console.log(alunos);
 console.log(alunos[1]);
