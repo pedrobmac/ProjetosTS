@@ -44,6 +44,16 @@ class Contato {
     return await ContatoModel.findById(id);
   }
 
+  async edit(id) {
+    if (typeof id !== 'string') return;
+
+    this.valida(); //validação dos dados puros do formulário
+    if (this.errors.length > 0) return;
+
+    this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true});
+
+  }
+
   async register() {
     this.valida(); //validação dos dados puros do formulário
     if (this.errors.length > 0) return;
