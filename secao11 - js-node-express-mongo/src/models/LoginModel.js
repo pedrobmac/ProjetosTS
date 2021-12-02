@@ -22,6 +22,26 @@ class Login {
     this.user = null;
   }
 
+  async login() {
+    this.valida(); //validação dos dados puros do formulário
+    if (this.errors.length > 0) return;
+
+    this.user = await LoginModel.findOne({
+      email: this.body.email
+    });
+
+    if (!this.user) {
+      this.errors.push('Usuário ou senha inválidos'); //erro genérico, usuário não encontrado
+      return;
+    }
+
+    if (!bcryptjs.compareSync(this.body.password, this.user.password)) {
+      this.errors.push('Usuário ou senha inválidos'); //erro genérico, senha inválida
+      this.user = null; //garantir que usuário não loga sem validar a senha
+      return;
+    }
+  }
+
   async register() {
     this.valida(); //validação dos dados puros do formulário
     if (this.errors.length > 0) return;
@@ -32,19 +52,15 @@ class Login {
     const salt = bcryptjs.genSaltSync(); //cria o salt do hash
     this.body.password = bcryptjs.hashSync(this.body.password, salt); //transforma a senha em hash antes de salvar no BD
 
-    try {
-      this.user = await LoginModel.create(this.body);
-    } catch (e) {
-      console.log(e);
-    }
+    this.user = await LoginModel.create(this.body);
   }
 
   async UserExists() {
-    const checkUser = await LoginModel.findOne({
+    this.user = await LoginModel.findOne({
       email: this.body.email
     });
 
-    if (checkUser) this.errors.push('Usuário já cadastrado');
+    if (this.user) this.errors.push('Usuário já cadastrado');
   }
 
   valida() {
