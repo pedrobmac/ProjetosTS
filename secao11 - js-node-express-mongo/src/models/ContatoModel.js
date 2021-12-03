@@ -39,18 +39,15 @@ class Contato {
     this.contato = null;
   }
 
-  static async buscaPorId(id) {
-    if (typeof id !== 'string') return;
-    return await ContatoModel.findById(id);
-  }
-
   async edit(id) {
     if (typeof id !== 'string') return;
 
     this.valida(); //validação dos dados puros do formulário
     if (this.errors.length > 0) return;
 
-    this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true});
+    this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {
+      new: true
+    });
 
   }
 
@@ -84,6 +81,19 @@ class Contato {
       telefone: this.body.telefone,
       email: this.body.email
     }
+  }
+
+  //Métodos estáticos
+  static async buscaPorId(id) {
+    if (typeof id !== 'string') return;
+    return await ContatoModel.findById(id);
+  }
+
+  static async buscaContatos() {
+    return await ContatoModel.find()
+    .sort({
+      criadoEm: -1
+    });
   }
 
 }
