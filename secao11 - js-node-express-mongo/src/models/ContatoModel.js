@@ -96,6 +96,11 @@ class Contato {
     });
   }
 
+  static async delete(id) {
+    if (typeof id !== 'string') return;
+    return await ContatoModel.findByIdAndDelete(id);
+  }
+
 }
 
 module.exports = Contato;
