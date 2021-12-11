@@ -1,5 +1,10 @@
 export class Pessoa {
-  constructor(public nome: string, public sobrenome: string, private idade: number, protected cpf: string) {}
+  constructor(
+    public nome: string,
+    public sobrenome: string,
+    private idade: number,
+    protected cpf: string
+  ) {}
 
   getIdade(): number {
     return this.idade;
@@ -16,7 +21,13 @@ export class Pessoa {
 
 export class Aluno extends Pessoa {
   //na forma curta, pegar os parâmetros da classe mãe e só colocar o nível de acesso dos atributos que pertençam à classe filha (último atributo do exemplo abaixo)
-  constructor(nome: string, sobrenome: string, idade: number, cpf: string, public sala: string) {
+  constructor(
+    nome: string,
+    sobrenome: string,
+    idade: number,
+    cpf: string,
+    public sala: string
+  ) {
     super(nome, sobrenome, idade, cpf);
   }
 
