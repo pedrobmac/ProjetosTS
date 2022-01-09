@@ -14,10 +14,10 @@ import {
   NoDiscount,
 } from './classes/discount';
 
-// const fiftyPercentDiscount = new FiftyPercentDiscount();
-// const tenPercentDiscount = new TenPercentDiscount();
-const noDiscount = new NoDiscount();
-const shoppingCart = new ShoppingCart(noDiscount); //injeção de dependência pra aplicar o disconto via OCP
+// const discount = new FiftyPercentDiscount();
+// const discount = new TenPercentDiscount();
+const discount = new NoDiscount();
+const shoppingCart = new ShoppingCart(discount); //injeção de dependência pra aplicar o disconto via OCP
 const messaging = new Messaging();
 const persistency = new Persistency();
 const order = new Order(shoppingCart, messaging, persistency);
