@@ -1,3 +1,10 @@
+/*
+Single Responsability Principle
+Uma classe deve ter apenas um motivo para mudar (evite conjunções aditivas: e, bem como, também...)
+Classes devem possuir apenas uma responsabilidade
+Este princípio está intimamente ligado a outro, conhecido como "Separation of Concerns"
+*/
+
 import { ShoppingCart } from './entities/shopping-cart';
 import { Order } from './entities/order';
 import { Messaging } from './services/messaging';
